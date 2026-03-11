@@ -1,9 +1,9 @@
 nombre,apellido,salario,departamento,jefe,cargo
-Carlos,García,45000,Ventas,Ana,Vendedor
-María,Rodríguez,52000,IT,Ana,Desarrollador
-Juan,Martínez,38000,Marketing,Sofía,Asistente
-Ana,López,55000,IT,,Directora IT
-Pedro,González,42000,Ventas,Ana,Vendedor
+Javi,García,45000,Ventas,Ana,Vendedor
+María,Rodríguez,2000,IT,Ana,Desarrollador
+Juan,Martínez,2900,Marketing,Sofía,Asistente
+Ana,López,55000,IT,,Gerente
+Pedro,González,2000,Ventas,Ana,gerente
 Laura,Fernández,48000,RRHH,Miguel,Analista
 Diego,Sánchez,35000,Marketing,Sofía,Diseñador
 Sofía,Ramírez,60000,IT,,Directora IT
