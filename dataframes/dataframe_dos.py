@@ -124,7 +124,9 @@ df_concat = pd.concat([df1,df2], axis=0, join='outer')
 
 df_concat = df_concat.fillna(df_concat.mean())
 print(df_concat)
-
+#Realiza un `outer join` y luego crea una nueva columna que calcule el 
+# total de compensación (`Salary + Bonus`).
+#  Maneja los valores nulos en la columna `Bonus`.
 
 df1 = pd.DataFrame({
     'Employee_ID': ['E1', 'E2', 'E3'],
@@ -137,7 +139,49 @@ df2 = pd.DataFrame({
     'Department': ['HR', 'Finance', 'IT'],
     'Bonus': [5000, 7000, 6000]
 })
+
 #HaY q poner el left y el right pqq no tienen los mismos index
 df_outer = pd.merge(df1,df2,left_on='Employee_ID',how='outer',right_on='ID')
+df_outer['Bonus'] = df_outer['Bonus'].fillna(0)
+
+# calcular compensación
+df_outer['Compensacion'] = df_outer['Salary'] + df_outer['Bonus']
 
 print(df_outer)
+
+
+# 
+df_sales = pd.DataFrame({
+    'Date': ['2023-01-01', '2023-01-02', '2023-01-03'],
+    'Product_ID': ['A1', 'A2', 'A3'],
+    'Sales': [100, 200, 150]
+})
+
+df_inventory = pd.DataFrame({
+    'Product_ID': ['A1', 'A2', 'A4'],
+    'Stock': [50, 60, 70]
+})
+
+df_prices = pd.DataFrame({
+    'Product_ID': ['A1', 'A2', 'A3'],
+    'Price': [10, 20, 15]
+})
+#1. Realiza un merge entre `df_sales` y `df_prices` para obtener el ingreso 
+# total (`Sales * Price`) por producto.
+
+df_ingreso = pd.merge(df_sales, df_prices, on='Product_ID')
+
+print(df_ingreso)
+
+#2)Realiza un merge entre el resultado anterior y `df_inventory`
+#  para añadir la información de stock.
+
+df_stock = pd.merge(df_ingreso, df_inventory, on='Product_ID')
+
+print(df_stock)
+
+#Identifica los productos con ingresos y stock disponibles,
+# y calcula la relación ingreso/stock.
+df_stock['Ingreso'] = df_stock['Sales'] * df_stock['Price']
+df_stock['Relacion Ingreso/Stock'] = df_stock['Ingreso'] / df_stock['Stock']
+print(df_stock)
